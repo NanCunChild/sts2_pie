@@ -55,5 +55,6 @@ fn source_label(s: &SaveSource) -> &'static str {
         SaveSource::ProtonOfficial => "Proton (正版)",
         SaveSource::ProtonPirated => "Proton (盗版?)",
         SaveSource::Wine => "Wine",
+        SaveSource::GoldbergEmu => "Goldberg (Steam 模拟)",
     }
 }

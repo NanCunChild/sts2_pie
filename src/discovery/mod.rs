@@ -21,6 +21,7 @@ pub enum SaveSource {
     ProtonOfficial,
     ProtonPirated,
     Wine,
+    GoldbergEmu,
 }
 
 pub fn discover_all() -> Vec<SaveEntry> {
@@ -67,6 +68,21 @@ fn build_patterns() -> Vec<(String, SaveSource)> {
             format!("{home}/.wine/drive_c/users/*/AppData/Roaming/SlayTheSpire2/steam/*/profile*/saves/current_run*.save"),
             SaveSource::Wine,
         ));
+        
+        patterns.push((
+        format!("{home}/.local/share/Steam/steamapps/compatdata/2868840/pfx/drive_c/users/steamuser/AppData/Roaming/GSE Saves/2868840/remote/profile*/saves/current_run*.save"),
+        SaveSource::GoldbergEmu,
+    ));
+        // 盗版 10 位随机 ID compatdata
+        patterns.push((
+        format!("{home}/.local/share/Steam/steamapps/compatdata/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]/pfx/drive_c/users/steamuser/AppData/Roaming/GSE Saves/2868840/remote/profile*/saves/current_run*.save"),
+        SaveSource::GoldbergEmu,
+    ));
+        // Wine prefix
+        patterns.push((
+        format!("{home}/.wine/drive_c/users/*/AppData/Roaming/GSE Saves/2868840/remote/profile*/saves/current_run*.save"),
+        SaveSource::GoldbergEmu,
+    ));
     }
 
     patterns
