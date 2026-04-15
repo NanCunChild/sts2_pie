@@ -1,23 +1,52 @@
-name: Rust
+name: Release
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    tags:
+      - 'v*'
 
 env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
+  build-and-release:
+    name: Build and Release
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            artifact_name: sts2_pie
+            asset_name: sts2_pie-linux-amd64
 
-    runs-on: ubuntu-latest
+          - os: windows-latest
+            artifact_name: sts2_pie.exe
+            asset_name: sts2_pie-windows-amd64.exe
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Rust toolchain
+      uses: dtolnay/rust-toolchain@stable
+
+    - name: Build project
       run: cargo build --verbose --release
-      
+
     - name: Run tests
-      run: cargo test --verbose
+      run: cargo test --verbose --release
+
+    - name: Rename Artifact
+      shell: bash
+
+      run: |
+        cp target/release/${{ matrix.artifact_name }} ./${{ matrix.asset_name }}
+
+    - name: Upload Release Asset
+      uses: softprops/action-gh-release@v2
+
+      with:
+        files: ./${{ matrix.asset_name }}
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
