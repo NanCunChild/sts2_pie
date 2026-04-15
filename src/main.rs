@@ -8,7 +8,9 @@ mod ui;
 use app::SaveParserApp;
 
 fn main() -> eframe::Result<()> {
+    #[cfg(target_os = "linux")]
     check_wayland_warning();
+    
     let options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
             .with_inner_size([1200.0, 800.0])
@@ -18,10 +20,9 @@ fn main() -> eframe::Result<()> {
     };
 
     eframe::run_native(
-        "STS2 Save Parser",
+        "STS2 Profile Info Editor",
         options,
         Box::new(|cc| {
-            // 中文字体支持
             setup_custom_fonts(&cc.egui_ctx);
             Ok(Box::new(SaveParserApp::new()))
         }),
@@ -42,7 +43,6 @@ fn check_wayland_warning() {
 fn setup_custom_fonts(ctx: &egui::Context) {
     let mut fonts = egui::FontDefinitions::default();
 
-    // 尝试加载系统中文字体（按平台）
     let font_data = load_system_cjk_font();
     if let Some(data) = font_data {
         fonts
