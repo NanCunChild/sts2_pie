@@ -53,7 +53,6 @@ impl SaveParserApp {
             Err(e) => {
                 eprintln!("[load_path] ERR: {:#}", e);
                 self.status = format!("加载失败: {:#}", e);
-                // 即使失败也更新路径输入，方便看到点击触发了
                 self.path_input = format!("[失败] {}", path.display());
             }
         }
@@ -78,7 +77,6 @@ impl SaveParserApp {
 
 impl eframe::App for SaveParserApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
-        // 不可变借用 ctx.input，所以先拿出来
         ctx.input(|i| {
             if !i.raw.hovered_files.is_empty() {
                 eprintln!("[update] hovered_files: {}", i.raw.hovered_files.len());

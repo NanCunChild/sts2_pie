@@ -56,7 +56,6 @@ pub fn show(ui: &mut egui::Ui, app: &mut SaveParserApp) {
     }
 
     // === 左右分栏：右侧固定宽，左侧填充 ===
-    // 用 child_ui + 手动切割比 SidePanel 嵌套更可控
     let total = ui.available_size();
     let right_width = (total.x * 0.42).clamp(280.0, 560.0);
     let left_width = total.x - right_width - 8.0;
@@ -110,7 +109,6 @@ pub fn show(ui: &mut egui::Ui, app: &mut SaveParserApp) {
     });
 }
 
-// render_value 不变
 fn render_value(ui: &mut egui::Ui, key: &str, value: &mut Value, changed: &mut bool, depth: usize) {
     match value {
         Value::Object(map) => {
