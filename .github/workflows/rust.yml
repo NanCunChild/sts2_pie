@@ -16,12 +16,12 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            artifact_name: sts2_pie
-            asset_name: sts2_pie-linux-amd64
+            artifact_name: sts2-pie
+            asset_name: sts2-pie-linux-amd64
 
           - os: windows-latest
-            artifact_name: sts2_pie.exe
-            asset_name: sts2_pie-windows-amd64.exe
+            artifact_name: sts2-pie.exe
+            asset_name: sts2-pie-windows-amd64.exe
 
     steps:
     - name: Checkout code
