@@ -1,10 +1,10 @@
 # Slay The Spire II Profile Info Editor
 This is a simple rust app for editing profile of  `Slay The Spire II`
 
-It destructs profile files and able to edit it with simple and intuitive ways.
+It deconstructs profile files and able to edit it with simple and intuitive ways.
 
 ## How does it work
-It detects multible paths, including:
+It detects multiple paths, including:
 `~/.local/share/Steam/steamapps/compatdata/[Random ID]/pfx/drive_c/users/steamuser/AppData/Roaming/GSE Saves/2868840/remote/profile1/saves/current_run.save`
 
 `~/.wine/drive_c/users/[User Name]/AppData/Roaming/GSE Saves/2868840/remote/profile1/saves/current_run.save`
