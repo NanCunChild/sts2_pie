@@ -1,7 +1,7 @@
 # Slay The Spire II Profile Info Editor
 This is a simple rust app for editing profile of  `Slay The Spire II`
 
-It deconstructs profile files and able to edit it with simple and intuitive ways.
+It deconstructs profile files(`current_run.save`) and able to edit it with simple and intuitive ways.
 
 ## How does it work
 It detects multiple paths, including:
@@ -11,7 +11,7 @@ It detects multiple paths, including:
 
 and so on.
 
-Then it will destruct these JSON files and expose intuitive buttons for easily controlling.
+Then it will deconstructs these JSON files and expose intuitive buttons for easily controlling.
 
 ## Future feats
 - **Memory Injection** for in-game and immediate cracking.
