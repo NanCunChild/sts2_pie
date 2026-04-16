@@ -141,7 +141,7 @@ fn render_value(ui: &mut egui::Ui, key: &str, value: &mut Value, changed: &mut b
             });
         }
         Value::Number(_) => {
-            let original = if let Value::Number(n) = &value {
+            let original = if let Value::Number(n) = &*value {
                 n.to_string()
             } else {
                 unreachable!()

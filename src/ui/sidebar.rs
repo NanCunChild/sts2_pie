@@ -8,11 +8,10 @@ pub fn show(ui: &mut egui::Ui, app: &mut SaveParserApp) {
     ui.separator();
 
     egui::ScrollArea::vertical().show(ui, |ui| {
-        // 按 source 分组
         let mut by_source: std::collections::BTreeMap<String, Vec<_>> = Default::default();
         for entry in &app.discovered {
             by_source
-                .entry(source_label(&entry.source).to_string())
+                .entry(entry.source.label().to_string())
                 .or_default()
                 .push(entry.clone());
         }
@@ -47,14 +46,4 @@ pub fn show(ui: &mut egui::Ui, app: &mut SaveParserApp) {
                 });
         }
     });
-}
-
-fn source_label(s: &SaveSource) -> &'static str {
-    match s {
-        SaveSource::WindowsNative => "Windows 原生",
-        SaveSource::ProtonOfficial => "Proton (正版)",
-        SaveSource::ProtonPirated => "Proton (盗版?)",
-        SaveSource::Wine => "Wine",
-        SaveSource::GoldbergEmu => "Goldberg (Steam 模拟)",
-    }
 }
